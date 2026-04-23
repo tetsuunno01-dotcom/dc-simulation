@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内制度変更 &amp; おすすめランキング — アイシン DC ガイド</title>
+<style>
+  :root {
+    --primary: #1a56a0;
+    --accent:  #e8a020;
+    --sp500:   #e05252;
+    --acwi:    #4a9e6b;
+    --deposit: #8888aa;
+    --bg:      #f4f7fb;
+    --card:    #ffffff;
+    --text:    #1e2533;
+    --sub:     #5a6278;
+    --gold:    #c9920a;
+    --silver:  #6b7280;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Hiragino Sans", "Yu Gothic UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+  /* ヘッダー */
+  header {
+    background: linear-gradient(135deg, #0d3575 0%, #1a56a0 60%, #2572cc 100%);
+    color: #fff; padding: 48px 24px 40px;
+    text-align: center;
+  }
+  header .tag { display: inline-block; background: rgba(255,255,255,.18); border-radius: 20px; padding: 4px 16px; font-size: 13px; letter-spacing: .08em; margin-bottom: 16px; }
+  header h1 { font-size: clamp(22px, 4vw, 36px); font-weight: 700; margin-bottom: 10px; }
+  header p  { font-size: 15px; opacity: .85; }
+
+  /* 戻るボタン */
+  .back-bar { background: #fff; border-bottom: 2px solid #e0e8f4; padding: 12px 20px; }
+  .back-bar a {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none;
+    border: 2px solid var(--primary); border-radius: 24px; padding: 6px 18px;
+    transition: all .2s;
+  }
+  .back-bar a:hover { background: var(--primary); color: #fff; }
+
+  /* ナビ */
+  nav { display: flex; justify-content: center; gap: 4px; background: #fff; border-bottom: 1px solid #e0e8f4; position: sticky; top: 0; z-index: 100; padding: 0 8px; }
+  nav a { display: block; padding: 14px 18px; font-size: 14px; font-weight: 600; color: var(--sub); text-decoration: none; border-bottom: 3px solid transparent; transition: all .2s; white-space: nowrap; }
+  nav a:hover, nav a.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+  /* セクション共通 */
+  section { max-width: 900px; margin: 0 auto; padding: 56px 20px; }
+  section h2 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  section h2 .step { background: var(--primary); color: #fff; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .section-lead { color: var(--sub); font-size: 15px; margin-bottom: 32px; }
+
+  /* カード */
+  .card { background: var(--card); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.07); padding: 28px; margin-bottom: 24px; }
+
+  /* 制度変更タイムライン */
+  .change-timeline { position: relative; padding-left: 28px; }
+  .change-timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:#d0daea; }
+  .change-item { position: relative; margin-bottom: 32px; }
+  .change-item::before {
+    content:''; position:absolute; left:-22px; top:4px;
+    width:14px; height:14px; border-radius:50%;
+    background: var(--primary); border: 3px solid #fff;
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  .change-item .ci-label { font-size: 12px; font-weight: 700; color: var(--primary); background: #eaf0fb; border-radius: 12px; padding: 2px 10px; display: inline-block; margin-bottom: 6px; }
+  .change-item h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .change-item p  { font-size: 14px; color: var(--sub); }
+
+  /* 階建て比較 */
+  .floor-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+  @media(max-width:600px){ .floor-compare { grid-template-columns: 1fr; } }
+  .floor-box { border-radius: 14px; padding: 22px; }
+  .floor-box.old { background: #fff3f3; border: 2px solid #f5b5b5; }
+  .floor-box.new { background: #f0fff5; border: 2px solid #8fd4a8; }
+  .floor-box .fb-label { font-size: 12px; font-weight: 700; letter-spacing: .06em; margin-bottom: 12px; }
+  .floor-box.old .fb-label { color: #c04040; }
+  .floor-box.new .fb-label { color: #2a7a50; }
+  .floor-box ul { list-style: none; }
+  .floor-box ul li { font-size: 14px; padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,.06); display: flex; align-items: flex-start; gap: 8px; }
+  .floor-box ul li:last-child { border-bottom: none; }
+  .floor-num { font-weight: 800; font-size: 18px; }
+  .floor-box.old .floor-num { color: #c04040; }
+  .floor-box.new .floor-num { color: #2a7a50; }
+
+  /* 銘柄テーブル */
+  .fund-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .fund-table th { background: #eaf0fb; color: var(--primary); padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+  .fund-table td { padding: 12px 14px; border-bottom: 1px solid #edf0f7; vertical-align: top; }
+  .fund-table tr:last-child td { border-bottom: none; }
+  .fund-table tr:hover td { background: #f8faff; }
+  .tag-new { display: inline-block; background: #ff6b35; color: #fff; border-radius: 10px; font-size: 11px; font-weight: 700; padding: 1px 7px; margin-left: 4px; }
+  .tag-pop { display: inline-block; background: #1a56a0; color: #fff; border-radius: 10px; font-size: 11px; font-weight: 700; padding: 1px 7px; margin-left: 4px; }
+  .fee-low { color: #2a7a50; font-weight: 700; }
+
+  /* ランキングカード */
+  .rank-section { margin-bottom: 48px; }
+  .rank-section h3 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+  .rank-card { background: var(--card); border-radius: 18px; box-shadow: 0 3px 16px rgba(0,0,0,.09); padding: 0; margin-bottom: 20px; overflow: hidden; }
+  .rank-card-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px 16px; border-bottom: 1px solid #edf0f7; }
+  .rank-medal { font-size: 44px; line-height: 1; flex-shrink: 0; }
+  .rank-title-area {}
+  .rank-num { font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--sub); margin-bottom: 3px; }
+  .rank-title { font-size: 20px; font-weight: 800; }
+  .rank-card.gold .rank-title { color: var(--gold); }
+  .rank-card.silver .rank-title { color: var(--silver); }
+
+  .rank-card-body { padding: 20px 24px; }
+
+  .fund-rec { background: #f7f9fd; border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; border-left: 4px solid var(--primary); }
+  .fund-rec.last { margin-bottom: 0; }
+  .fund-rec-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .fund-rec-name .badge { display:inline-block; font-size:11px; font-weight:700; border-radius:10px; padding:1px 8px; margin-left:6px; vertical-align:middle; }
+  .badge-orukan { background:#eaf5f0; color:#2a7a50; }
+  .badge-sp500  { background:#fff0f0; color:#c04040; }
+  .fund-rec-detail { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--sub); margin-top: 6px; }
+  .fund-rec-detail span strong { color: var(--text); }
+
+  /* 前提バナー */
+  .premise-banner { background: linear-gradient(90deg, #1a56a0 0%, #2572cc 100%); color: #fff; border-radius: 14px; padding: 18px 24px; margin-bottom: 32px; display: flex; align-items: center; gap: 16px; }
+  .premise-banner .pb-icon { font-size: 32px; flex-shrink: 0; }
+  .premise-banner .pb-text { font-size: 14px; }
+  .premise-banner .pb-text strong { font-size: 16px; display: block; margin-bottom: 4px; }
+
+  /* 比較テーブル */
+  .compare-wrap { overflow-x: auto; }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+  .compare-table th { padding: 12px 16px; text-align: center; font-size: 13px; font-weight: 700; }
+  .compare-table th.col-item { text-align: left; background: #eaf0fb; color: var(--primary); }
+  .compare-table th.col-nisa { background: #fff0f0; color: #c04040; }
+  .compare-table th.col-dc   { background: #f0fff5; color: #2a7a50; }
+  .compare-table td { padding: 12px 16px; border-bottom: 1px solid #edf0f7; }
+  .compare-table td.col-item { font-weight: 600; background: #f8faff; }
+  .compare-table td.col-nisa { text-align: center; background: #fffafa; }
+  .compare-table td.col-dc   { text-align: center; background: #fafffe; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .chk { color: #2a7a50; font-weight: 700; font-size: 16px; }
+  .cross { color: #c04040; font-weight: 700; font-size: 16px; }
+
+  /* 注意書き */
+  .notice { background: #fffbea; border-left: 4px solid var(--accent); border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #6b5210; margin-top: 24px; }
+
+  /* フッター */
+  footer { text-align: center; padding: 40px 20px; font-size: 12px; color: var(--sub); border-top: 1px solid #dde4ef; }
+
+  @media(max-width:600px){
+    nav a { padding: 12px 10px; font-size: 13px; }
+    .rank-card-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag">アイシン DC 勉強会 — 補足資料</div>
+  <h1>社内制度変更 &amp;<br>独断と偏見のおすすめランキング</h1>
+  <p>制度の変更ポイントと、FP視点からの個人的なおすすめをご紹介します</p>
+</header>
+
+<div class="back-bar">
+  <a href="index.html">← メイン資料に戻る</a>
+</div>
+
+<nav id="nav">
+  <a href="#sec_change" class="active">📋 社内制度変更</a>
+  <a href="#sec_ranking">🏆 おすすめランキング</a>
+  <a href="#sec_compare">📊 NISA vs DC 比較</a>
+</nav>
+
+<!-- ===== SECTION 1: 社内制度変更 ===== -->
+<section id="sec_change">
+  <h2><span class="step">1</span>アイシン確定拠出年金 — 社内制度変更のポイント</h2>
+  <p class="section-lead">野村證券が提供する企業型DC「野村確定拠出年金」の対象銘柄と制度体系が大幅にアップデートされました。</p>
+
+  <div class="card">
+    <div class="change-timeline">
+
+      <div class="change-item">
+        <div class="ci-label">変更ポイント ①</div>
+        <h3>対象銘柄の拡充 — S&amp;P500・オルカンが選択可能に</h3>
+        <p>従来のラインナップに加え、NISAでも人気の高い低コスト・インデックスファンドが新たに加わりました。<br>
+        <strong style="color:var(--primary);">野村DC全世界株式（オール・カントリー）</strong> や <strong style="color:var(--sp500);">野村米国株式S&amp;P500</strong>（いずれも確定拠出年金向け）が選択できます。</p>
+      </div>
+
+      <div class="change-item">
+        <div class="ci-label">変更ポイント ②</div>
+        <h3>退職給付制度の再編 — 5階建てから3階建てへ</h3>
+        <p>複数の給付制度が整理・統合され、シンプルな3階建て構造になりました。自分の掛金と受取額の見通しが立てやすくなります。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 階建て比較 -->
+  <div class="floor-compare">
+    <div class="floor-box old">
+      <div class="fb-label">🏗 変更前（5階建て）</div>
+      <ul>
+        <li><span class="floor-num">①</span> <span>退職一時金<br><span style="font-size:12px;color:#a04040;">会社分</span></span></li>
+        <li><span class="floor-num">②</span> <span>第二退職一時金<br><span style="font-size:12px;color:#a04040;">会社分</span></span></li>
+        <li><span class="floor-num">③</span> <span>確定拠出年金（DC）<br><span style="font-size:12px;color:#a04040;">個人分</span></span></li>
+        <li><span class="floor-num">④</span> <span>第一標準年金<br><span style="font-size:12px;color:#a04040;">基金分</span></span></li>
+        <li><span class="floor-num">⑤</span> <span>第二標準年金<br><span style="font-size:12px;color:#a04040;">基金分</span></span></li>
+      </ul>
+      <p style="font-size:12px; color:#a04040; margin-top:10px;">5つの給付制度が別々に存在</p>
+    </div>
+    <div class="floor-box new">
+      <div class="fb-label">🏢 変更後（3階建て）</div>
+      <ul>
+        <li><span class="floor-num">①</span> <span>退職一時金<br><span style="font-size:12px;color:#2a7a50;">会社分</span></span></li>
+        <li><span class="floor-num">②</span> <span>確定拠出年金（DC）<br><span style="font-size:12px;color:#2a7a50;">個人分・拡充</span></span></li>
+        <li><span class="floor-num">③</span> <span>標準年金<br><span style="font-size:12px;color:#2a7a50;">基金分・統合</span></span></li>
+      </ul>
+      <p style="font-size:13px; color:#2a7a50; margin-top:12px; font-weight:600;">→ 第二退職一時金・第一／第二標準年金を整理統合。<br>DC部分が拡充され、自分で運用できる枠が拡大。</p>
+    </div>
+  </div>
+
+  <!-- 新銘柄ラインナップ -->
+  <div class="card">
+    <p style="font-size:15px; font-weight:700; margin-bottom:16px;">📦 注目の選択可能銘柄（DC向け）</p>
+    <div style="overflow-x:auto;">
+      <table class="fund-table">
+        <thead>
+          <tr>
+            <th>ファンド名</th>
+            <th>カテゴリ</th>
+            <th>信託報酬（年率）</th>
+            <th>ポイント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              野村DC全世界株式インデックスファンド<br>
+              <span style="font-size:12px;color:var(--sub);">（オール・カントリー）</span>
+              <span class="tag-new">NEW</span><span class="tag-pop">人気</span>
+            </td>
+            <td>全世界株式</td>
+            <td class="fee-low">約0.1155%</td>
+            <td style="font-size:13px;">約50カ国・数千銘柄に一括分散。世界経済の成長を丸ごと取り込む</td>
+          </tr>
+          <tr>
+            <td>
+              野村米国株式S&amp;P500インデックスファンド<br>
+              <span style="font-size:12px;color:var(--sub);">（確定拠出年金向け）</span>
+              <span class="tag-new">NEW</span>
+            </td>
+            <td>米国株式</td>
+            <td class="fee-low">約0.09889%</td>
+            <td style="font-size:13px;">米国大型株500社。過去30年で年率約10%の実績を誇るベンチマーク</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice" style="margin-top:16px;">
+      ℹ️ 信託報酬は2025年時点の目安です。最新の目論見書でご確認ください。
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: おすすめランキング ===== -->
+<section id="sec_ranking">
+  <h2><span class="step">2</span>独断と偏見のおすすめランキング</h2>
+  <p class="section-lead">あくまで個人的な見解です。最終判断はご自身でお願いします。投資にはリスクが伴います。</p>
+
+  <!-- 前提バナー -->
+  <div class="premise-banner">
+    <div class="pb-icon">📌</div>
+    <div class="pb-text">
+      <strong>前提条件：「長期・分散・積立」ができること</strong>
+      最低でも10〜20年以上の運用期間があること、毎月コツコツ積み立てられること——この2つが揃って初めてこのランキングが意味を持ちます。
+    </div>
+  </div>
+
+  <!-- 1位 NISA -->
+  <div class="rank-section">
+    <div class="rank-card gold">
+      <div class="rank-card-header">
+        <div class="rank-medal">🥇</div>
+        <div class="rank-title-area">
+          <div class="rank-num">第1位</div>
+          <div class="rank-title">NISA（つみたて投資枠＋成長投資枠）</div>
+        </div>
+      </div>
+      <div class="rank-card-body">
+
+        <p style="font-size:14px; color:var(--sub); margin-bottom:18px;">
+          運用益が<strong style="color:var(--text);">完全非課税</strong>、かつ<strong style="color:var(--text);">いつでも引き出し自由</strong>。
+          つみたて投資枠（年120万円）と成長投資枠（年240万円）を合わせて<strong style="color:var(--text);">年最大360万円</strong>まで非課税で投資可能。
+          老後資金だけでなく、教育費・住宅資金など幅広い目的に使える万能口座。
+        </p>
+
+        <div class="fund-rec">
+          <div class="fund-rec-name">
+            eMAXIS Slim 全世界株式（オール・カントリー）
+            <span class="badge badge-orukan">オルカン</span>
+          </div>
+          <div class="fund-rec-detail">
+            <span>📂 三菱UFJアセットマネジメント</span>
+            <span>💰 信託報酬 <strong>約0.05775%/年</strong></span>
+            <span>🌍 投資先：世界約50カ国・約3,000銘柄</span>
+          </div>
+          <p style="font-size:13px; color:var(--sub); margin-top:8px;">
+            1本で全世界に分散。迷ったらこれ。業界最低水準のコストで世界経済の成長をまるごと享受できる。
+          </p>
+        </div>
+
+        <div class="fund-rec last">
+          <div class="fund-rec-name">
+            eMAXIS Slim 米国株式（S&amp;P500）
+            <span class="badge badge-sp500">S&amp;P500</span>
+          </div>
+          <div class="fund-rec-detail">
+            <span>📂 三菱UFJアセットマネジメント</span>
+            <span>💰 信託報酬 <strong>約0.09372%/年</strong></span>
+            <span>🇺🇸 投資先：米国大型株500社</span>
+          </div>
+          <p style="font-size:13px; color:var(--sub); margin-top:8px;">
+            「アメリカ集中でいい」という方向け。過去の実績はオルカンより高いが、米国一国集中リスクはある。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 2位 DC -->
+  <div class="rank-section">
+    <div class="rank-card silver">
+      <div class="rank-card-header">
+        <div class="rank-medal">🥈</div>
+        <div class="rank-title-area">
+          <div class="rank-num">第2位</div>
+          <div class="rank-title">確定拠出年金（DC）</div>
+        </div>
+      </div>
+      <div class="rank-card-body">
+
+        <p style="font-size:14px; color:var(--sub); margin-bottom:18px;">
+          アイシンの退職金制度そのもの。参加は必須なので、<strong style="color:var(--text);">どうせやるなら配分を最適化する</strong>だけで大きく差がつく。
+          掛金の<strong style="color:var(--text);">所得控除</strong>（節税）＋運用中の<strong style="color:var(--text);">課税繰延</strong>という2重の税制メリット付き。
+          月2万円〜（役職により月6〜8万円近くまで拡大）を長期運用できる、老後資金の核となる制度。
+        </p>
+
+        <div class="fund-rec">
+          <div class="fund-rec-name">
+            野村DC全世界株式インデックスファンド（オール・カントリー）
+            <span class="badge badge-orukan">オルカン</span>
+          </div>
+          <div class="fund-rec-detail">
+            <span>📂 野村アセットマネジメント</span>
+            <span>💰 信託報酬 <strong>約0.1155%/年</strong></span>
+            <span>🌍 全世界株式・DC専用ファンド</span>
+          </div>
+          <p style="font-size:13px; color:var(--sub); margin-top:8px;">
+            DC口座内で選べる全世界株式インデックス。NISAのeMAXIS Slimより信託報酬はやや高いが、十分に低コスト。
+          </p>
+        </div>
+
+        <div class="fund-rec last">
+          <div class="fund-rec-name">
+            野村米国株式S&amp;P500インデックスファンド（確定拠出年金向け）
+            <span class="badge badge-sp500">S&amp;P500</span>
+          </div>
+          <div class="fund-rec-detail">
+            <span>📂 野村アセットマネジメント</span>
+            <span>💰 信託報酬 <strong>約0.09889%/年</strong></span>
+            <span>🇺🇸 米国S&amp;P500・DC専用ファンド</span>
+          </div>
+          <p style="font-size:13px; color:var(--sub); margin-top:8px;">
+            DC向けの中では最も低コストに近い水準。米国株集中で良い方はこちら。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="notice">
+    ⚠️ このランキングはFPとしての個人的な見解であり、特定の商品の購入を推奨するものではありません。投資にはリスクが伴い、元本割れの可能性があります。運用は自己責任でお願いします。
+  </div>
+</section>
+
+<!-- ===== SECTION 3: NISA vs DC 比較 ===== -->
+<section id="sec_compare">
+  <h2><span class="step">3</span>NISA と DC — どちらを優先する？</h2>
+  <p class="section-lead">両制度を正しく理解して、使い分けることが資産形成の近道です。</p>
+
+  <div class="card">
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="col-item">比較項目</th>
+            <th class="col-nisa">🥇 NISA<br>（つみたて＋成長投資枠）</th>
+            <th class="col-dc">🥈 確定拠出年金（DC）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-item">運用益の課税</td>
+            <td class="col-nisa"><span class="chk">✔</span> 完全非課税</td>
+            <td class="col-dc">課税繰延<br><span style="font-size:12px;color:var(--sub);">（受取時に課税・各種控除あり）</span></td>
+          </tr>
+          <tr>
+            <td class="col-item">掛金の節税</td>
+            <td class="col-nisa"><span class="cross">✘</span> なし</td>
+            <td class="col-dc"><span class="chk">✔</span> 全額所得控除<br><span style="font-size:12px;color:var(--sub);">（掛金×所得税率分が節税）</span></td>
+          </tr>
+          <tr>
+            <td class="col-item">引き出し自由度</td>
+            <td class="col-nisa"><span class="chk">✔</span> いつでも可能</td>
+            <td class="col-dc"><span class="cross">✘</span> 原則60歳まで不可</td>
+          </tr>
+          <tr>
+            <td class="col-item">年間投資上限</td>
+            <td class="col-nisa"><strong>年360万円</strong><br><span style="font-size:12px;color:var(--sub);">つみたて枠120万＋成長投資枠240万<br>非課税保有上限1,800万円</span></td>
+            <td class="col-dc"><strong>月2万円〜</strong>（年24万円〜）<br><span style="font-size:12px;color:var(--sub);">役職により月6〜8万円近くまで拡大<br>（事業主掛金含む）</span></td>
+          </tr>
+          <tr>
+            <td class="col-item">向いている人</td>
+            <td class="col-nisa" style="font-size:13px;">将来も引き出す可能性がある人、まず手軽に始めたい人</td>
+            <td class="col-dc" style="font-size:13px;">老後資金を確実に積み立てたい人、節税効果を最大化したい人</td>
+          </tr>
+          <tr>
+            <td class="col-item">おすすめ順位</td>
+            <td class="col-nisa" style="font-size:20px; font-weight:800; color:var(--gold);">🥇 1位</td>
+            <td class="col-dc" style="font-size:20px; font-weight:800; color:var(--silver);">🥈 2位</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px; padding:18px; background:#f0f4ff; border-radius:12px;">
+      <p style="font-weight:700; margin-bottom:8px; color:var(--primary);">💡 考え方のポイント</p>
+      <ul style="font-size:14px; padding-left:20px; line-height:2.2; list-style:disc;">
+        <li><strong>DCはまず「配分変更」から</strong> — 会社の退職金制度なので全員が対象。今の配分が元本確保型になっていたら、インデックスファンドへ切り替えるだけで将来が大きく変わる</li>
+        <li><strong>NISAは自分でやる追加の資産形成</strong> — DCとは独立した制度。引き出し自由・完全非課税という強みがあるので、余裕資金は年360万円枠を活かして積み立てたい</li>
+        <li>2つは「どちらか」ではなく<strong>両立できる</strong> — DCは会社が土台を作ってくれる制度、NISAは自分で上積みする制度と考えると整理しやすい</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="notice">
+    ℹ️ 掛金上限・税制は2025年時点の制度に基づきます。変更になる場合があります。詳細は野村證券担当者またはアイシン人事部門にご確認ください。
+  </div>
+</section>
+
+<!-- ===== メイン資料への導線 ===== -->
+<div style="background: linear-gradient(135deg, #1a3a1a 0%, #2a6e44 60%, #4a9e6b 100%); padding: 48px 24px; text-align:center;">
+  <div style="max-width:700px; margin:0 auto;">
+    <p style="color:rgba(255,255,255,.7); font-size:13px; letter-spacing:.08em; margin-bottom:10px;">BACK TO MAIN</p>
+    <h2 style="color:#fff; font-size:clamp(20px,3vw,28px); font-weight:800; margin-bottom:12px;">長期投資シミュレーション資料</h2>
+    <p style="color:rgba(255,255,255,.85); font-size:15px; margin-bottom:28px; line-height:1.8;">
+      200年の歴史チャート・DCAシミュレーター・DCの税メリット試算など、<br>
+      投資の基礎から確定拠出年金の仕組みまでを数字で確認できます。
+    </p>
+    <a href="index.html" style="display:inline-block; background:#e8a020; color:#fff; font-size:17px; font-weight:800; text-decoration:none; padding:16px 48px; border-radius:50px; box-shadow:0 4px 20px rgba(0,0,0,.25); transition:transform .2s;"
+       onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      ← メイン資料（シミュレーション）を見る
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>本資料はアイシン社内勉強会用の参考資料です。投資判断はご自身の責任でお願いします。</p>
+</footer>
+
+<script>
+// スムーズスクロール＆ナビアクティブ
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section[id]');
+
+function updateNav() {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
